@@ -1,0 +1,12 @@
+{
+  "program": {
+    "portable": {
+      "pnacl-translate": {
+        "url": "moonlight-chrome.pexe"
+      },
+      "pnacl-debug": {
+        "url": "moonlight-chrome_unstripped.bc"
+      }
+    }
+  }
+}

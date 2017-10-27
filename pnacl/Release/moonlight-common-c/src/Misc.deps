@@ -1,0 +1,50 @@
+# Updated by fix_deps.py
+pnacl/Release/moonlight-common-c/src/Misc.o: \
+  moonlight-common-c/src/Misc.c \
+  moonlight-common-c/src/Limelight-internal.h \
+  moonlight-common-c/src/Limelight.h moonlight-common-c/src/Platform.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/time.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/ioctl.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/arpa/inet.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netinet/in.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netinet6/in6.h \
+  moonlight-common-c/src/PlatformSockets.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/socket.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netdb.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/select.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netinet/tcp.h \
+  moonlight-common-c/src/PlatformThreads.h \
+  moonlight-common-c/src/Video.h \
+  moonlight-common-c/src/LinkedBlockingQueue.h \
+  moonlight-common-c/src/RtpFecQueue.h \
+  moonlight-common-c/enet/include/enet/enet.h \
+  moonlight-common-c/enet/include/enet/unix.h \
+  moonlight-common-c/enet/include/enet/types.h \
+  moonlight-common-c/enet/include/enet/protocol.h \
+  moonlight-common-c/enet/include/enet/list.h \
+  moonlight-common-c/enet/include/enet/callbacks.h
+:
+moonlight-common-c/src/Misc.c:
+moonlight-common-c/src/Limelight-internal.h:
+moonlight-common-c/src/Limelight.h:
+moonlight-common-c/src/Platform.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/time.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/ioctl.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/arpa/inet.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netinet/in.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netinet6/in6.h:
+moonlight-common-c/src/PlatformSockets.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/socket.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netdb.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/select.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netinet/tcp.h:
+moonlight-common-c/src/PlatformThreads.h:
+moonlight-common-c/src/Video.h:
+moonlight-common-c/src/LinkedBlockingQueue.h:
+moonlight-common-c/src/RtpFecQueue.h:
+moonlight-common-c/enet/include/enet/enet.h:
+moonlight-common-c/enet/include/enet/unix.h:
+moonlight-common-c/enet/include/enet/types.h:
+moonlight-common-c/enet/include/enet/protocol.h:
+moonlight-common-c/enet/include/enet/list.h:
+moonlight-common-c/enet/include/enet/callbacks.h:

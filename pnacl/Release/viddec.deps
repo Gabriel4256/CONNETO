@@ -1,0 +1,149 @@
+# Updated by fix_deps.py
+pnacl/Release/viddec.o: viddec.cpp moonlight.hpp \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/instance.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_instance.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_macros.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_stdint.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_resource.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_console.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_bool.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_var.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/instance_handle.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/view.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/resource.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/pass_ref.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/rect.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_rect.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_point.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_size.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/point.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/size.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/logging.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/module.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_module.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_core.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_completion_callback.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_time.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/core.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/var.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/var_dictionary.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/var_array.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/mouse_lock.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/graphics_3d.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_graphics_3d.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_graphics_3d.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/video_decoder.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_codecs.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/completion_callback.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_errors.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/output_traits.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/array_output.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_array_output.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/audio.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_audio.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/audio_config.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_audio_config.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/text_input_controller.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_text_input_controller.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_gamepad.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_input_event.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_input_event.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_touch_point.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_opengles2.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/graphics_3d_client.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/utility/completion_callback_factory.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/utility/completion_callback_factory_thread_traits.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/utility/threading/lock.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/utility/threading/simple_thread.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/message_loop.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/GLES2/gl2.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/GLES2/gl2platform.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/KHR/khrplatform.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/GLES2/gl2ext.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/nacl_io/nacl_io.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/nacl_io/ostypes.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/sdk_util/macros.h \
+  moonlight-common-c/src/Limelight.h opus/include/opus_multistream.h \
+  opus/include/opus.h opus/include/opus_types.h \
+  opus/include/opus_defines.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/lib/gl/gles2/gl2ext_ppapi.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/dev/ppb_opengles2ext_dev.h \
+  h264bitstream/h264_stream.h h264bitstream/bs.h \
+  h264bitstream/h264_sei.h
+viddec.cpp:
+moonlight.hpp:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/instance.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_instance.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_macros.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_stdint.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_resource.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_console.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_bool.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_var.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/instance_handle.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/view.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/resource.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/pass_ref.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/rect.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_rect.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_point.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_size.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/point.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/size.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/logging.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/module.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_module.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_core.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_completion_callback.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_time.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/core.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/var.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/var_dictionary.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/var_array.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/mouse_lock.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/graphics_3d.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_graphics_3d.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_graphics_3d.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/video_decoder.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_codecs.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/completion_callback.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_errors.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/output_traits.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/array_output.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_array_output.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/audio.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_audio.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/audio_config.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_audio_config.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/text_input_controller.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_text_input_controller.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_gamepad.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_input_event.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_input_event.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/pp_touch_point.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/ppb_opengles2.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/graphics_3d_client.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/utility/completion_callback_factory.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/utility/completion_callback_factory_thread_traits.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/utility/threading/lock.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/utility/threading/simple_thread.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/cpp/message_loop.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/GLES2/gl2.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/GLES2/gl2platform.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/KHR/khrplatform.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/GLES2/gl2ext.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/nacl_io/nacl_io.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/nacl_io/ostypes.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/sdk_util/macros.h:
+moonlight-common-c/src/Limelight.h:
+opus/include/opus_multistream.h:
+opus/include/opus.h:
+opus/include/opus_types.h:
+opus/include/opus_defines.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/lib/gl/gles2/gl2ext_ppapi.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/ppapi/c/dev/ppb_opengles2ext_dev.h:
+h264bitstream/h264_stream.h:
+h264bitstream/bs.h:
+h264bitstream/h264_sei.h:

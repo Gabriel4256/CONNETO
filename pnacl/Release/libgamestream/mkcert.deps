@@ -1,0 +1,57 @@
+# Updated by fix_deps.py
+pnacl/Release/libgamestream/mkcert.o: libgamestream/mkcert.c \
+  libgamestream/mkcert.h ports/include/openssl/x509v3.h \
+  ports/include/openssl/bio.h ports/include/openssl/e_os2.h \
+  ports/include/openssl/opensslconf.h ports/include/openssl/crypto.h \
+  ports/include/openssl/stack.h ports/include/openssl/safestack.h \
+  ports/include/openssl/opensslv.h ports/include/openssl/ossl_typ.h \
+  ports/include/openssl/symhacks.h ports/include/openssl/x509.h \
+  ports/include/openssl/buffer.h ports/include/openssl/evp.h \
+  ports/include/openssl/objects.h ports/include/openssl/obj_mac.h \
+  ports/include/openssl/asn1.h ports/include/openssl/bn.h \
+  ports/include/openssl/ec.h ports/include/openssl/ecdsa.h \
+  ports/include/openssl/ecdh.h ports/include/openssl/rsa.h \
+  ports/include/openssl/dsa.h ports/include/openssl/dh.h \
+  ports/include/openssl/sha.h ports/include/openssl/x509_vfy.h \
+  ports/include/openssl/lhash.h ports/include/openssl/pkcs7.h \
+  ports/include/openssl/conf.h ports/include/openssl/pkcs12.h \
+  ports/include/openssl/pem.h ports/include/openssl/pem2.h \
+  ports/include/openssl/engine.h ports/include/openssl/rand.h \
+  ports/include/openssl/ui.h ports/include/openssl/err.h
+libgamestream/mkcert.c:
+libgamestream/mkcert.h:
+ports/include/openssl/x509v3.h:
+ports/include/openssl/bio.h:
+ports/include/openssl/e_os2.h:
+ports/include/openssl/opensslconf.h:
+ports/include/openssl/crypto.h:
+ports/include/openssl/stack.h:
+ports/include/openssl/safestack.h:
+ports/include/openssl/opensslv.h:
+ports/include/openssl/ossl_typ.h:
+ports/include/openssl/symhacks.h:
+ports/include/openssl/x509.h:
+ports/include/openssl/buffer.h:
+ports/include/openssl/evp.h:
+ports/include/openssl/objects.h:
+ports/include/openssl/obj_mac.h:
+ports/include/openssl/asn1.h:
+ports/include/openssl/bn.h:
+ports/include/openssl/ec.h:
+ports/include/openssl/ecdsa.h:
+ports/include/openssl/ecdh.h:
+ports/include/openssl/rsa.h:
+ports/include/openssl/dsa.h:
+ports/include/openssl/dh.h:
+ports/include/openssl/sha.h:
+ports/include/openssl/x509_vfy.h:
+ports/include/openssl/lhash.h:
+ports/include/openssl/pkcs7.h:
+ports/include/openssl/conf.h:
+ports/include/openssl/pkcs12.h:
+ports/include/openssl/pem.h:
+ports/include/openssl/pem2.h:
+ports/include/openssl/engine.h:
+ports/include/openssl/rand.h:
+ports/include/openssl/ui.h:
+ports/include/openssl/err.h:

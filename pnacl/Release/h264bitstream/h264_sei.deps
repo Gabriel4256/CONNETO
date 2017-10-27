@@ -1,0 +1,8 @@
+# Updated by fix_deps.py
+pnacl/Release/h264bitstream/h264_sei.o: h264bitstream/h264_sei.c \
+  h264bitstream/bs.h h264bitstream/h264_stream.h \
+  h264bitstream/h264_sei.h
+h264bitstream/h264_sei.c:
+h264bitstream/bs.h:
+h264bitstream/h264_stream.h:
+h264bitstream/h264_sei.h:

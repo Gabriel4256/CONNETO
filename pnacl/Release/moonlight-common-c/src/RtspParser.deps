@@ -1,0 +1,6 @@
+# Updated by fix_deps.py
+pnacl/Release/moonlight-common-c/src/RtspParser.o: \
+  moonlight-common-c/src/RtspParser.c moonlight-common-c/src/Rtsp.h
+:
+moonlight-common-c/src/RtspParser.c:
+moonlight-common-c/src/Rtsp.h:

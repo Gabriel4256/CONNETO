@@ -1,0 +1,27 @@
+# Updated by fix_deps.py
+pnacl/Release/moonlight-common-c/enet/list.o: \
+  moonlight-common-c/enet/list.c \
+  moonlight-common-c/enet/include/enet/enet.h \
+  moonlight-common-c/enet/include/enet/unix.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/time.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/socket.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netinet/in.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netinet6/in6.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netdb.h \
+  moonlight-common-c/enet/include/enet/types.h \
+  moonlight-common-c/enet/include/enet/protocol.h \
+  moonlight-common-c/enet/include/enet/list.h \
+  moonlight-common-c/enet/include/enet/callbacks.h
+:
+moonlight-common-c/enet/list.c:
+moonlight-common-c/enet/include/enet/enet.h:
+moonlight-common-c/enet/include/enet/unix.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/time.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/socket.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netinet/in.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netinet6/in6.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netdb.h:
+moonlight-common-c/enet/include/enet/types.h:
+moonlight-common-c/enet/include/enet/protocol.h:
+moonlight-common-c/enet/include/enet/list.h:
+moonlight-common-c/enet/include/enet/callbacks.h:

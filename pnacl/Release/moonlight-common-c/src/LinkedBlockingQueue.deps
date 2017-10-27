@@ -1,0 +1,23 @@
+# Updated by fix_deps.py
+pnacl/Release/moonlight-common-c/src/LinkedBlockingQueue.o: \
+  moonlight-common-c/src/LinkedBlockingQueue.c \
+  moonlight-common-c/src/LinkedBlockingQueue.h \
+  moonlight-common-c/src/Platform.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/time.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/ioctl.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/arpa/inet.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netinet/in.h \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netinet6/in6.h \
+  moonlight-common-c/src/Limelight.h \
+  moonlight-common-c/src/PlatformThreads.h
+:
+moonlight-common-c/src/LinkedBlockingQueue.c:
+moonlight-common-c/src/LinkedBlockingQueue.h:
+moonlight-common-c/src/Platform.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/time.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/ioctl.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/arpa/inet.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netinet/in.h:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/netinet6/in6.h:
+moonlight-common-c/src/Limelight.h:
+moonlight-common-c/src/PlatformThreads.h:

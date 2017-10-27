@@ -1,0 +1,5 @@
+# Updated by fix_deps.py
+pnacl/Release/libchelper.o: libchelper.c \
+  /Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/time.h
+libchelper.c:
+/Users/cgutman/nacl_sdk/pepper_49/include/pnacl/sys/time.h:

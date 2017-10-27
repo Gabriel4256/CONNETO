@@ -1,0 +1,5 @@
+# Updated by fix_deps.py
+pnacl/Release/moonlight-common-c/enet/win32.o: \
+  moonlight-common-c/enet/win32.c
+:
+moonlight-common-c/enet/win32.c:

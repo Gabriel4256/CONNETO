@@ -1,0 +1,7 @@
+# Updated by fix_deps.py
+pnacl/Release/moonlight-common-c/reedsolomon/rs.o: \
+  moonlight-common-c/reedsolomon/rs.c \
+  moonlight-common-c/reedsolomon/rs.h
+:
+moonlight-common-c/reedsolomon/rs.c:
+moonlight-common-c/reedsolomon/rs.h:
