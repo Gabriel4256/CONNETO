@@ -56,8 +56,8 @@ Check out our [website](http://moonlight-stream.com) for project links and infor
 
 ## Modified things for implementation of CONNETO (can find by CONNETO tag)
 - ./manifest.json: Chrome Extension동작 방법들의 정의가 들어있는 파일
-- ./index.html
-- ./js/css/style.css
+- ./index.html -> ./indexNew.html로 대체해야함
+- ./css/style.css -> ./css/styleNew.css로 대체해야함
 - ./js/mdns-browser/main.js
 - ./js/background.js
 - ./js/index.js
