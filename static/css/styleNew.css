@@ -1,0 +1,153 @@
+/* main background color */
+body {
+    background-color: #272727;
+}
+
+/* logo design */
+.logo {
+    font-family: "Arial";
+    font-size: 30px;
+    color: white;
+    margin: 30px;
+}
+#neto {
+    color: #00d2ff;
+    font-weight: bold;
+}
+
+/* Spinner design */
+.spinner {
+  width: 45px;
+  height: 45px;
+
+  position: relative;
+  margin: 100px auto;
+}
+
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #00d2ff;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+  background-color: #00d2ff;
+}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+/* netework setting design */
+.networkSettings {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    font-size: 65px;
+    color: white;
+    text-align: center;
+    margin-top: 100px; /* 165px */
+}
+#refreshButton {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 32.5px
+}
+
+/* login button, modal design */
+#LoginView {
+    text-align: center;
+    margin-top: 150px;
+}
+.mdl-dialog {
+    width: 400px;
+    background-color: #27292d; /* 242832 333846 27292d */
+    color: white !important;
+    border-radius: 15px;
+}
+.mdl-dialog__title {
+    padding: 24px 24px 0;
+    margin: 0;
+    font-size: 2.5rem;
+}
+.mdl-dialog__content {
+    padding: 20px 24px 24px 24px;
+    color: rgba(255, 255, 255, 0.90) !important;
+}
+.mdl-textfield__input {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.90) !important;
+}
+.mdl-textfield__label {
+    color: rgba(255, 255, 255, 0.90) !important;
+}
+#continueLogin {
+    color: #00d2ff !important;
+}
+#cancelLogin {
+    color: #00d2ff !important;
+}
+
+/* refreshSpinner design */
+.spinner2 {
+  margin: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  text-align: center;
+
+  -webkit-animation: sk-rotate 2.0s infinite linear;
+  animation: sk-rotate 2.0s infinite linear;
+}
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #ffffff;
+  border-radius: 100%;
+
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+.dot2 {
+  top: auto;
+  bottom: 0;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+@-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+@keyframes sk-bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}

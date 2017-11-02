@@ -69,7 +69,7 @@ chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
 					sendMsg({"error": 2});
 					return;
 				}
-				startGame(hosts[msgObject.hostId], msgObject.appId, /* option을 추가해 줘야함 */);
+				startGame(hosts[msgObject.hostId], msgObject.appId, startOption);
 				sendMsg({hostId: msgObject.hostId, appId: msgObject.appId});
 			})
 
@@ -82,9 +82,17 @@ chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
 				accID = userID;
 				modal.close();
 
+				startOption.frameRate = "60";
+				startOption.streamWidth = "1920";
+				startOption.streamHeight = "1080";
+				startOption.bitRate = "20";
+				startOption.remote_audio_enabled = 1;
+
+				/*
 				$("#secondView").fadeOut("slow", function (){
 		            $("#thirdView").fadeIn("slow");
 		        });
+				*/
 			}
 			else{
 				// ChromeApplication에서는 alert 작동하지 않음
@@ -111,6 +119,8 @@ chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
 			1080P 30FPS - 10Mbps
 			4KP 30FPS - 40Mbps
 			*/
+
+			// modified되지 않은 moonlight-chrome의 index.html을 보고 data-value가 어떤식으로 생겼는지 확인
 
 		default:
 			break;

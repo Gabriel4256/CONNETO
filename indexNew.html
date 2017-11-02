@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="-1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="static/css/style.css">
+        <link rel="stylesheet" href="static/css/roboto.css">
+        <link rel="stylesheet" href="static/css/material.min.css">
+        <link rel="stylesheet" href="static/css/material-icons.css">
+        <title></title>
+    </head>
+    <body data-name="moonlight-chrome" data-tools="pnacl" data-configs="Debug Release" data-path="{tc}/{config}">
+
+        <div class="logo"><span id="con">CON</span><span id="neto">NETO</span></div>
+
+        <!-- firstView !-->
+        <div id="firstView">
+            <br />
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div>
+
+        <!-- secondView !-->
+        <div id="secondView" style="display: none;">
+            <div id="LoginView">
+                <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised" id="showLoginView">
+                    Login
+                </button>
+            </div>
+            <!-- login modal !-->
+            <dialog id="loginDialog" class="mdl-dialog">
+                <!-- <h3 class="mdl-dialog__title">Login</h3> !-->
+                <div class="mdl-dialog__content">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="userId"/>
+                        <label class="mdl-textfield__label" for="userId">ID</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="password" id="userPassword"/>
+                        <label class="mdl-textfield__label" for="userPassword">Password</label>
+                    </div>
+                </div>
+                <div class="mdl-dialog__actions">
+                    <button type="button" class="mdl-button mdl-js-button mdl-button--colored" id="cancelLogin">Cancel</button>
+                    <button type="button" class="mdl-button mdl-js-button mdl-button--colored" id="continueLogin">Continue</button>
+                </div>
+            </dialog>
+        </div>
+
+
+        <!-- thirdView !-->
+        <div id="thirdView" style="display: none;">
+            <div class="networkSettings">
+                <div id="refreshButton">
+                    <button class="mdl-button mdl-js-button" id="networkTest">
+                        <img src="static/res/refresh.png" id="refresh" style="width: 30px"; />
+                    </button>
+                </div>
+                <span id="resValue">1080</span>P | <span id="frmValue">60</span>FPS
+            </div>
+        </div>
+
+        <!-- fourthView !-->
+        <div id="fourthView" style="display: none;">
+            <br />
+            <div class="spinner2">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+        </div>
+
+        <main id="main-content" class="mdl-layout__content">
+            <!-- NaCl module placeholder.  NaCl gets thrown into here !-->
+            <div id="listener"></div> 
+        </main>
+
+        <script defer src="static/js/jquery-2.2.0.min.js"></script>
+        <script defer src="static/js/material.min.js"></script>
+        <script type="text/javascript" src="static/js/messages.js"></script>
+        <script type="text/javascript" src="static/js/common.js"></script>
+        <script type="text/javascript" src="static/js/index.js"></script>
+        <script type="text/javascript" src="static/js/utils.js"></script>
+        <script type="text/javascript" src="static/js/mdns-browser/dns.js"></script>
+        <script type="text/javascript" src="static/js/mdns-browser/main.js"></script>
+        <script type="text/javascript" src="static/js/socketConnection.js"></script>
+    </body>
+</html>

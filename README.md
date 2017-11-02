@@ -61,6 +61,7 @@ Check out our [website](http://moonlight-stream.com) for project links and infor
 - ./js/mdns-browser/main.js
 - ./js/background.js
 - ./js/index.js
+- ./js/messages.js
 - ./js/socketConnection.js
 
 ## Things to implement

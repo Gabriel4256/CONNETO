@@ -75,17 +75,19 @@ function onBoundsChanged() {
 
 function changeUiModeForNaClLoad() {
     // CONNETO: 화면전환 관련 코드수정
-    // $('#main-navigation').children().hide();
-    // $("#main-content").children().not("#listener, #naclSpinner").hide();
-    // $('#naclSpinnerMessage').text('Loading Moonlight plugin...');
-    // $('#naclSpinner').css('display', 'inline-block');
+    $('#main-navigation').children().hide();
+    $("#main-content").children().not("#listener, #naclSpinner").hide();
+    $('#naclSpinnerMessage').text('Loading Moonlight plugin...');
+    $('#naclSpinner').css('display', 'inline-block');
 
     // 세번째 뷰는 뒤에 fadeIn 코드 떄문에 자동으로 hide되고, 첫번째 뷰와 두번쨰 뷰 4초동안 바꿔치기
+    /*
     setTimeout(function (){
         $("#firstView").fadeOut("slow", function (){
             $("#secondView").fadeIn("slow");
         });
     }, 4000);
+    */
     // CONNETO: 화면전환 관련 코드수정
 }
 
@@ -622,11 +624,13 @@ function startGame(host, appID, option) {
             var frameRate = $('#selectFramerate').data('value').toString();
             var streamWidth = $('#selectResolution').data('value').split(':')[0];
             var streamHeight = $('#selectResolution').data('value').split(':')[1];
+            var bitrate = parseInt($("#bitrateSlider").val()) * 1000;
+            var remote_audio_enabled = $("#remoteAudioEnabledSwitch").parent().hasClass('is-checked') ? 1 : 0;
             // we told the user it was in Mbps. We're dirty liars and use Kbps behind their back.
 
             // CONNETO: add option argument to automatic setting of resolution, framerate
             if(option){
-                framerate = option.frameRate;
+                frameRate = option.frameRate;
                 streamWidth = option.streamWidth;
                 streamHeight = option.streamHeight;
                 bitrate = option.bitRate;
@@ -634,7 +638,6 @@ function startGame(host, appID, option) {
             }
             // CONNETO: add option argument to automatic setting of resolution, framerate
 
-            var bitrate = parseInt($("#bitrateSlider").val()) * 1000;
             console.log('startRequest:' + host.address + ":" + streamWidth + ":" + streamHeight + ":" + frameRate + ":" + bitrate);
 
             var rikey = generateRemoteInputKey();
@@ -653,8 +656,6 @@ function startGame(host, appID, option) {
                     return;
                 });
             }
-
-            var remote_audio_enabled = $("#remoteAudioEnabledSwitch").parent().hasClass('is-checked') ? 1 : 0;
 
             host.launchApp(appID,
                     streamWidth + "x" + streamHeight + "x" + frameRate,
