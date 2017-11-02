@@ -1,120 +1,89 @@
+/* main background color */
 body {
-    background-color: #282C38;
-    color: #fff;
+    background-color: #272727;
+}
+
+/* logo design */
+.logo {
+    font-family: "Arial";
+    font-size: 30px;
+    color: white;
+    margin: 30px;
+}
+#neto {
+    color: #00d2ff;
+    font-weight: bold;
+}
+
+/* Spinner design */
+.spinner {
+  width: 45px;
+  height: 45px;
+
+  position: relative;
+  margin: 100px auto;
+}
+
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #00d2ff;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+  background-color: #00d2ff;
+}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+/* netework setting design */
+.networkSettings {
     font-family: 'Roboto', sans-serif;
-}
-.page-title {
-    font-weight: 300;
-    font-size: 26px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    width: 100%;
-    text-align: center;
-}
-span.mdl-layout-title {
-    font-weight: 300;
-}
-span.mdl-layout-title > span {
-    font-weight: 900;
-    color: #00A3C6;
-}
-
-.mdl-layout__header-row {
-    padding: 0 80px 0 80px;
-}
-
-main {
-    padding: 0 80px 0 80px;
-}
-
-@media screen and (max-width: 600px) {
-    #host-grid .mdl-card {
-        flex-basis: 50% !important;
-    }
-    #game-grid .mdl-card {
-        height: 100px !important;
-        width: 75px !important;
-    }
-}
-
-@media screen and (min-width: 600px) and (max-width: 800px) {
-    #host-grid .mdl-card {
-        flex-basis: 33% !important;
-    }
-    #game-grid .mdl-card {
-        height: 150px !important;
-        width: 112.5px !important;
-    }
-}
-
-@media screen and (min-width: 800px) and (max-width: 1024px) {
-    main {
-        padding: 0 72px 0 72px !important;
-    }
-    .mdl-layout__header-row {
-        padding: 0 72px 0 72px !important;
-    }
-    #host-grid .mdl-card {
-        flex-basis: 25% !important;
-    }
-    #game-grid .mdl-card {
-        height: 200px !important;
-        width: 150px !important;
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    #game-grid .mdl-card {
-        height: 300px !important;
-        width: 225px !important;
-    }
-}
-
-.nav-menu-parent {
-    position: relative;
-}
-.mdl-menu__outline {
-    background-color: #333846;
+    font-weight: 100;
+    font-size: 65px;
     color: white;
+    text-align: center;
+    margin-top: 100px; /* 165px */
 }
-.mdl-menu__item {
-    color: white;
-}
-.mdl-menu__item:hover {
-    background-color: #00A3C6;
-}
-#bitrateField {
-    width: 100px;
-    height: 36px;
-    overflow: hidden;
-    text-transform: none;
-}
-.bitrateMenu {
-    width: 170px;
+#refreshButton {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 32.5px
 }
 
-.mdl-button {
-    color: #fff !important;
-}
-.mdl-grid {
-    width: 100%;
-}
-.mdl-cell {
+/* login button, modal design */
+#LoginView {
     text-align: center;
-    color:#fff;
-    padding:25px;
-}
-#backIcon {
-    position: fixed;
-    left: 28px;
-}
-#backIcon:hover {
-    cursor: pointer;
+    margin-top: 150px;
 }
 .mdl-dialog {
     width: 400px;
-    background-color: #333846;
-    color: white;
+    background-color: #27292d; /* 242832 333846 27292d */
+    color: white !important;
+    border-radius: 15px;
 }
 .mdl-dialog__title {
     padding: 24px 24px 0;
@@ -123,193 +92,62 @@ main {
 }
 .mdl-dialog__content {
     padding: 20px 24px 24px 24px;
-    color: rgba(255, 255, 255, 0.90);
+    color: rgba(255, 255, 255, 0.90) !important;
 }
 .mdl-textfield__input {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.90);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.90) !important;
 }
 .mdl-textfield__label {
-    color: rgba(255, 255, 255, 0.90);
+    color: rgba(255, 255, 255, 0.90) !important;
 }
-#naclSpinner {
-    display: none;
-    z-index: 2;
-    position: fixed;
-    left: 50%;
-    bottom: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0 auto;
-    text-align: center;
+#continueLogin {
+    color: #00d2ff !important;
 }
-#loadingSpinner {
-    display: none;
-    z-index: 1;
-    position: fixed;
-    left: 50%;
-    bottom: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0 auto;
-    color: white;
-    text-align: center;
+#cancelLogin {
+    color: #00d2ff !important;
 }
-#snackButton {
-    width: 0px;
-    height: 0px;
-    display: none;
+
+/* refreshSpinner design */
+.spinner2 {
+  margin: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  text-align: center;
+
+  -webkit-animation: sk-rotate 2.0s infinite linear;
+  animation: sk-rotate 2.0s infinite linear;
 }
-.mdl-snackbar__text {
-    padding: 14px 30px 14px 30px;
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #ffffff;
+  border-radius: 100%;
+
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
 }
-.mdl-snackbar {
-    min-width:0px;
+.dot2 {
+  top: auto;
+  bottom: 0;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
 }
-#host-grid, #game-grid {
-    padding: 0;
-    margin: 0;
-    flex: 1;
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: center;
+@-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
 }
-#host-grid .mdl-card {
-    flex-basis: 15%;
-}
-#game-grid .mdl-card {
-    position: relative;
-    background: transparent;
-}
-#host-grid .mdl-card, #game-grid .mdl-card {
-    text-align: center;
-    width: 170px;
-    height: 170px;
-    min-height: 170px;
-    margin: 15px;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
-}
-#host-grid .mdl-card:hover, #host-grid .mdl-card:focus, #host-grid .mdl-card:active, #game-grid .mdl-card:hover, #game-grid .mdl-card:focus, #game-grid .mdl-card:active {
-    transform: scale(1.1);
-}
-#host-grid .mdl-card__title {
-    padding: 0;
-}
-#host-grid .mdl-card__title .mdl-card__title-text {
-    width: 100%;
-    font-size: 14px;
-    padding: 10px 15px;
-    background-color: rgba(0,0,0,0.7);
-}
-#game-grid .mdl-card img {
-    height: 100%;
-    width: 100%;
-}
-#game-grid .game-title {
-    position: absolute;
-    bottom: 0;
-    min-height: 20px;
-    font-size: 13px;
-    font-weight: 300;
-    padding: 5px 0;
-    width: 100%;
-    color: white;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.6);
-}
-#game-grid .game-title span {
-    padding: 0 10px;
-}
-.add-host-card > .mdl-card__title {
-    color: #fff;
-    background:
-            url('../res/ic_add_to_queue_white_48px.svg') center no-repeat #3E4454;
-}
-.host-container > .mdl-card__title {
-    color: #fff;
-    background:
-            url('../res/ic_tv_white_48px.svg') center no-repeat #3E4454;
-}
-#host-grid p {
-    margin: 0;
-}
-#host-grid .mdl-textfield {
-    width: 200px;
-    margin-right: 20px;
-    margin-bottom: 0px;
-}
-#host-grid #GFEHostIPField {
-    padding-bottom: 0px;
-}
-#host-grid #selectHost {
-    padding: 0px;
-    line-height: 20px;
-    height: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 20px;
-    background: none;
-}
-#host-grid .button-holder {
-    padding: 0px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-.remove-host {
-    position:absolute;
-    right:5px;
-    top:5px;
-    width:24px;
-    height:24px;
-    z-index: 5;
-    background-image: url('../res/ic_remove_circle_outline_white_48px.svg');
-    background-repeat: no-repeat;
-    background-size: 20px 20px;
-    background-position: center;
-    border: 0;
-    cursor: pointer;
-}
-/*.remove-host:hover, .remove-host:focus {
-    background-image: url('\\static\\res\\ic_remove_circle_white_24px.svg');
-}*/
-#pairButton {
-    margin: 3px;
-}
-#showAppsButton {
-    margin: 3px;
-}
-#listener {
-    overflow: hidden;
-    margin-top: 0px;
-    height: 0px;
-}
-.fullscreen {
-    height: 100vh !important;
-    overflow: hidden !important;
-    margin: auto !important;
-    padding: 0 !important;
-    border: none !important;
-}
-.current-game {
-    border: 2px solid #00A3C6;
-}
-.host-cell-inactive {
-    border: 3px solid #8e0000;
-}
-.host-cell:hover {
-    cursor: pointer;
-    color: #000 !important;
-}
-.cancel-current:hover {
-    cursor: pointer;
-}
-.cancel-current {
-    border: 2px solid white;
-    padding: 5px;
-    border-radius: 5px;
-}
-.cancel-current img {
-    margin-right: 5px;
-}
-.cancel-current .game-title {
-    color: #fff;
+@keyframes sk-bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
 }

@@ -1,3 +1,5 @@
+// All implementations are made for CONNETO
+
 var socketInfo;
 //window.setTimeout(Test, 1000);
 chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
@@ -79,16 +81,36 @@ chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
 			if(isApproved){
 				accID = userID;
 				modal.close();
-                /*
+
 				$("#secondView").fadeOut("slow", function (){
 		            $("#thirdView").fadeIn("slow");
 		        });
-				*/
 			}
 			else{
 				// ChromeApplication에서는 alert 작동하지 않음
 				// alert("ID나 비밀번호 값이 옳지 않습니다. 다시 입력해 주세요");
 			}
+
+		case "networkTest":
+			/*
+			JSON type of networkSetting instance {
+				ip: xx; //networkTest는 내부IP값이 아닌 GlobalIP값을 반환해준다
+				latency: xx;
+				download: xx;
+				resolution: xx;
+				frame: xx;
+			}
+			*/
+
+			/*
+			720P 60FPS - 10Mbps
+			1080P 60FPS - 20Mbps
+			4KP 60FPS - 80Mbps
+
+			720P 30FPS - 5Mbps
+			1080P 30FPS - 10Mbps
+			4KP 30FPS - 40Mbps
+			*/
 
 		default:
 			break;

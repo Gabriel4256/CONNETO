@@ -53,3 +53,17 @@ This project is being actively developed at [XDA Developers](http://forum.xda-de
 3. Send Pull Requests
 
 Check out our [website](http://moonlight-stream.com) for project links and information.
+
+## Modified things for implementation of CONNETO (can find by CONNETO tag)
+- ./manifest.json: Chrome Extension동작 방법들의 정의가 들어있는 파일
+- ./index.html
+- ./js/css/style.css
+- ./js/mdns-browser/main.js
+- ./js/background.js
+- ./js/index.js
+- ./js/socketConnection.js
+
+## Things to implement
+- Automatic connection between client & host
+- Making queue for waiting client
+- Reduce delay of connection

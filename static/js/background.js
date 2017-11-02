@@ -2,8 +2,10 @@ function createWindow(state) {
     chrome.app.window.create('index.html', {
         state: state,
         bounds: {
-            width: 960,
-            height: 540
+            // CONNETO: change window size
+            width: 450,
+            height: 450
+            // CONNETO: change window size
         }
     }, function(window) {
         // workaround:

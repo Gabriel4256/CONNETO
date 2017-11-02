@@ -6,9 +6,11 @@ var api;  // `api` should only be set if we're in a host-specific screen. on the
 var isInGame = false; // flag indicating whether the game stream started
 var windowState = 'normal'; // chrome's windowState, possible values: 'normal' or 'fullscreen'
 
-// Modified
+// CONNETO: variables to use
 var accID;
-
+var networkSetting = {};
+var startOption = {};
+// CONNETO: variables to use
 
 // Called by the common.js module.
 function attachListeners() {
@@ -23,9 +25,9 @@ function attachListeners() {
     $('#backIcon').on('click', showHostsAndSettingsMode);
     $('#quitCurrentApp').on('click', stopGameWithConfirmation);
 
-    // Modified: jQuery handler 등록
+    // CONNETO: jQuery handler 등록
     $('#showLoginView').on('click', showLoginModal);
-
+    // CONNETO: jQuery handler 등록
 
     $(window).resize(fullscreenNaclModule);
     chrome.app.window.current().onMaximized.addListener(fullscreenChromeWindow);
@@ -72,10 +74,19 @@ function onBoundsChanged() {
 }
 
 function changeUiModeForNaClLoad() {
-    $('#main-navigation').children().hide();
-    $("#main-content").children().not("#listener, #naclSpinner").hide();
-    $('#naclSpinnerMessage').text('Loading Moonlight plugin...');
-    $('#naclSpinner').css('display', 'inline-block');
+    // CONNETO: 화면전환 관련 코드수정
+    // $('#main-navigation').children().hide();
+    // $("#main-content").children().not("#listener, #naclSpinner").hide();
+    // $('#naclSpinnerMessage').text('Loading Moonlight plugin...');
+    // $('#naclSpinner').css('display', 'inline-block');
+
+    // 세번째 뷰는 뒤에 fadeIn 코드 떄문에 자동으로 hide되고, 첫번째 뷰와 두번쨰 뷰 4초동안 바꿔치기
+    setTimeout(function (){
+        $("#firstView").fadeOut("slow", function (){
+            $("#secondView").fadeIn("slow");
+        });
+    }, 4000);
+    // CONNETO: 화면전환 관련 코드수정
 }
 
 function startPollingHosts() {
@@ -349,7 +360,7 @@ function addHost() {
     });
 }
 
-// Modified: LoginView 보여주는 창 생성
+// CONNETO: LoginView 보여주는 창 생성
 function showLoginModal(){
     var modal = document.querySelector('#loginDialog');
     modal.showModal();
@@ -368,7 +379,7 @@ function showLoginModal(){
         // modal.close();
     });
 }
-
+// CONNETO: LoginView 보여주는 창 생성
 
 // host is an NvHTTP object
 function addHostToGrid(host, ismDNSDiscovered) {
@@ -563,7 +574,9 @@ function showAppsMode() {
 
 // start the given appID.  if another app is running, offer to quit it.
 // if the given app is already running, just resume it.
-function startGame(host, appID) {
+// CONNETO: add option argument to automatic setting of resolution, framerate
+function startGame(host, appID, option) {
+    // CONNETO: add option argument to automatic setting of resolution, framerate
     if(!host || !host.paired) {
         console.log('attempted to start a game, but `host` did not initialize properly. Failing!');
         return;
@@ -610,6 +623,17 @@ function startGame(host, appID) {
             var streamWidth = $('#selectResolution').data('value').split(':')[0];
             var streamHeight = $('#selectResolution').data('value').split(':')[1];
             // we told the user it was in Mbps. We're dirty liars and use Kbps behind their back.
+
+            // CONNETO: add option argument to automatic setting of resolution, framerate
+            if(option){
+                framerate = option.frameRate;
+                streamWidth = option.streamWidth;
+                streamHeight = option.streamHeight;
+                bitrate = option.bitRate;
+                remote_audio_enabled = option.remote_audio_enabled;
+            }
+            // CONNETO: add option argument to automatic setting of resolution, framerate
+
             var bitrate = parseInt($("#bitrateSlider").val()) * 1000;
             console.log('startRequest:' + host.address + ":" + streamWidth + ":" + streamHeight + ":" + frameRate + ":" + bitrate);
 

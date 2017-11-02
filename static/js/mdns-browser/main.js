@@ -182,13 +182,13 @@ ServiceFinder.prototype.shutdown = function() {
   chrome.sockets.udp.onReceiveError.removeListener(this.onReceiveErrorListener_);
   // Close opened sockets.
 
-  // Modified: TCP Socket Closing
+  // CONNETO: TCP Socket Closing
   chrome.sockets.tcp.getSockets(function(sockets){
     sockets.forEach(function(sock){
       chrome.sockets.tcp.close(sock.socketId);
     });
   })
-
+  // CONNETO: TCP Socket Closing
 
   chrome.sockets.udp.getSockets(function(sockets) {
     sockets.forEach(function(sock) {
