@@ -10,7 +10,6 @@ chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
 	switch(msgObject.command){	//msgOBject의 command값에 따라 다른 작업을 수행
 		case "getHosts": //연결된 호스트들의 정보를 보내달라는 요청일 경우
 			var msg = [];
-			var i=0;
 			for (var hostId in hosts){	//hosts는 모든 host들의 정보를 담고 있는 사전에 정의된 변수
 				msg.push({"hostId": hostId,		//host의 id(고유한 값)
 					"hostname": hosts[hostId].hostname,	//host의 이름
@@ -18,7 +17,7 @@ chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
 					"paired": hosts[hostId].paired		//host와 현재 pairing된 상태인지
 				});
 			}
-			sendMsg({command: "hostList", list: msg});
+			sendMsg({command: "getHostsResult_TO_WEB", userID: msgObject.userID, list: msg});
 			break;
 
 		case "addHost":  //새로운 호스트를 연결해달라는 요청일 경우
@@ -29,10 +28,12 @@ chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
                 addHostToGrid(_nvhttpHost);
                 saveHosts();
                 sendMsg({
-                	"hostId": _nvhttpHost.hostId,
-                	"hostname": _nvhttpHost.hostname,
-                	"online": _nvhttpHost.online,
-              		"paired": _nvhttpHost.paired
+                	command: "addHostResult_TO_WEB",
+                	userID: msgObject.userID,
+                	hostId: _nvhttpHost.hostId,
+                	hostname: _nvhttpHost.hostname,
+                	online: _nvhttpHost.online,
+              		paired: _nvhttpHost.paired
                 });
             }, function() {
             	sendMsg({error: 3});
@@ -40,7 +41,7 @@ chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
         	}, randomNumber);
 			break;
 
-		case "getAppList":  //특정 호스트의 플레이 가능 게임 리스트를 보내달라는 요청
+		case "getApps":  //특정 호스트의 플레이 가능 게임 리스트를 보내달라는 요청
 			var host = hosts[msgObject.hostId];
 			if(!host.online){
 				sendMsg({"error": 1});
@@ -53,7 +54,11 @@ chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
 			}
 
 			host.getAppList().then(function(appList){	//getAppList는 host객체에 사전에 정의된 함수로 그 호스트의 실행가능한 게임들을 반환
-				sendMsg(appList);
+				sendMsg({
+					command: "getAppsResult_TO_WEB",
+					userID: msgOBject.userID,
+					appList
+				);
 			});
 			break;
 
@@ -70,7 +75,12 @@ chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
 					return;
 				}
 				startGame(hosts[msgObject.hostId], msgObject.appId, startOption);
-				sendMsg({hostId: msgObject.hostId, appId: msgObject.appId});
+				sendMsg({
+					command: "startGameResult_TO_WEB",
+					userID: msgObject.userID,
+					hostId: msgObject.hostId, 
+					appId: msgObject.appId
+				});
 			})
 
 		case "loginApproval":
@@ -142,27 +152,6 @@ function sendMsg(msg){	//tcp소켓을 통해 메세지를 보낼 때 사용하�
 		console.log("sent: " + sendInfo);
 	});
 }
-
-// function Test(){
-// 	console.log("Test");
-// 	for(var hostid in hosts){
-// 		console.log("fuck");
-// 		var host = hosts[hostid];
-// 		host.pollServer(function(){
-// 			if(host.online){
-// 				//hostChosen(host);
-// 				host.getAppList().then(function(appList){
-//     				appList.forEach(function (app) {
-//     				console.log(app.title);
-//     				//if(app.title === "Dead Space 3"){
-//     					startGame(hosts['3764db53-fa7f-4adc-90c7-82b22d464e11'], app.id);
-//     				//}
-//     				})
-// 				})
-// 			}
-// 		})
-// 	}
-// }
 
 function arrayBufferToString(buffer){
     var arr = new Uint8Array(buffer);
