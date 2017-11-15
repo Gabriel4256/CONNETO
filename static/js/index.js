@@ -590,7 +590,7 @@ function startGame(host, appID, option) {
 
             if(host.currentGame != 0 && host.currentGame != appID) {
                 host.getAppById(host.currentGame).then(function (currentApp) {
-                    var quitAppDialog = document.querySelector('#quitAppDialog');
+                    /*var quitAppDialog = document.querySelector('#quitAppDialog');
                     document.getElementById('quitAppDialogText').innerHTML =
                         currentApp.title + ' is already running. Would you like to quit ' +
                         currentApp.title + '?';
@@ -608,7 +608,7 @@ function startGame(host, appID, option) {
                             startGame(host, appID);
                         });
                         quitAppDialog.close();
-                    });
+                    });*/
 
                     return;
                 }, function (failedCurrentApp) {
@@ -627,14 +627,16 @@ function startGame(host, appID, option) {
             var bitrate = parseInt($("#bitrateSlider").val()) * 1000;
             var remote_audio_enabled = $("#remoteAudioEnabledSwitch").parent().hasClass('is-checked') ? 1 : 0;
             // we told the user it was in Mbps. We're dirty liars and use Kbps behind their back.
-
             // CONNETO: add option argument to automatic setting of resolution, framerate
+            //var frameRate, streamWidth, streamHeight, bitrate, remote_audio_enabled;
+             
             if(option){
-                frameRate = option.frameRate;
+                
                 streamWidth = option.streamWidth;
                 streamHeight = option.streamHeight;
-                bitrate = option.bitRate;
+                bitrate = parseInt(option.bitRate)*1000;
                 remote_audio_enabled = option.remote_audio_enabled;
+                startOption = option;
             }
             // CONNETO: add option argument to automatic setting of resolution, framerate
 
@@ -643,7 +645,7 @@ function startGame(host, appID, option) {
             var rikey = generateRemoteInputKey();
             var rikeyid = generateRemoteInputKeyId();
 
-            $('#loadingMessage').text('Starting ' + appToStart.title + '...');
+            //$('#loadingMessage').text('Starting ' + appToStart.title + '...');
             playGameMode();
 
             if(host.currentGame == appID) { // if user wants to launch the already-running app, then we resume it.
@@ -692,8 +694,12 @@ function playGameMode() {
 
 // Maximize the size of the nacl module by scaling and resizing appropriately
 function fullscreenNaclModule() {
-    var streamWidth = $('#selectResolution').data('value').split(':')[0];
-    var streamHeight = $('#selectResolution').data('value').split(':')[1];
+    //CONNECTO: modifying screen setting
+    //var streamWidth = $('#selectResolution').data('value').split(':')[0];
+    //var streamHeight = $('#selectResolution').data('value').split(':')[1];
+    var streamWidth = startOption.streamWidth;
+    var streamHeight = startOption.streamHeight;
+    //CONNECTO
     var screenWidth = window.innerWidth;
     var screenHeight = window.innerHeight;
 
