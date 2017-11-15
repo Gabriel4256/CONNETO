@@ -2,7 +2,8 @@
 
 var socketInfo;
 //window.setTimeout(Test, 1000);
-chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
+chrome.sockets.tcp.onReceive.addListener(function(info){
+	//tcp Listener 등록
 	var msg = arrayBufferToString(info.data);
 	console.log("Received: " + msg);
 	var msgObject = JSON.parse(msg); //msg로부터 JSON 객체를 얻어낸다(Parsing).
@@ -36,7 +37,7 @@ chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
               		paired: _nvhttpHost.paired
                 });
             }, function() {
-            	sendMsg({error: 3});
+            	sendMsg({command: "addHostResult_TO_WEB", userID: msgObject.userID, error: 3});
                 snackbarLog('pairing to ' + msgObject.hostIp + ' failed!');
         	}, randomNumber);
 			break;
@@ -56,9 +57,9 @@ chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
 			host.getAppList().then(function(appList){	//getAppList는 host객체에 사전에 정의된 함수로 그 호스트의 실행가능한 게임들을 반환
 				sendMsg({
 					command: "getAppsResult_TO_WEB",
-					userID: msgOBject.userID,
+					userID: msgObject.userID,
 					appList
-				);
+				});
 			});
 			break;
 
@@ -82,6 +83,7 @@ chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
 					appId: msgObject.appId
 				});
 			})
+			break;
 
 		case "loginApproval":
 			var isApproved = msgObject.isApproved;
@@ -108,6 +110,7 @@ chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
 				// ChromeApplication에서는 alert 작동하지 않음
 				// alert("ID나 비밀번호 값이 옳지 않습니다. 다시 입력해 주세요");
 			}
+			break;
 
 		case "networkTest":
 			/*
@@ -131,6 +134,7 @@ chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
 			*/
 
 			// modified되지 않은 moonlight-chrome의 index.html을 보고 data-value가 어떤식으로 생겼는지 확인
+			break;
 
 		default:
 			break;
@@ -138,18 +142,36 @@ chrome.sockets.tcp.onReceive.addListener(function(info){	//tcp Listener 등록
 });
 
 chrome.sockets.tcp.create({}, function(createInfo){
-	console.log("Tcp created");
-	chrome.sockets.tcp.connect(createInfo.socketId, 'localhost', 4001, function(result){	//따로 만든 tcp서버에 연결하여 tcp socket을 만듬
-		console.log("Tcp connected");
-		console.log("Created socket's socketId: " + createInfo.socketId);
-		console.log("Information of tcp connect result(minus value means error): " + result);
-		socketInfo = createInfo;
-	})
+	console.log("Created socket's socketId: " + createInfo.socketId);
+	socketInfo = createInfo;
+	/*connectToCentralserver(createInfo, 'localhost', 4001).then(function(success){
+
+	});*/
+	chrome.sockets.tcp.onReceiveError.addListener(function(info){
+		console.log("Something broken in connection with Central server: " + info.resultCode);
+	});
+
+	setInterval(function(){
+		chrome.sockets.tcp.getInfo(createInfo.socketId, function(socketInfo){
+		if(!socketInfo.connected){
+			connectToCentralserver(createInfo, 'localhost', 4001);
+		}
+	})}, 5000)
 })
+
+function connectToCentralserver(createInfo, ip, port){
+		chrome.sockets.tcp.connect(createInfo.socketId, ip, port, function(result){	//따로 만든 tcp서버에 연결하여 tcp socket을 만듬
+		console.log("Information of tcp connect result(minus value means error): " + result);
+		if(result>=0){
+			console.log("Tcp connected");
+		}
+	});		
+}
 
 function sendMsg(msg){	//tcp소켓을 통해 메세지를 보낼 때 사용하는 함수(귀찮은 변환 과정을 함수로 만듬)
 	chrome.sockets.tcp.send(socketInfo.socketId, stringToArrayBuffer(JSON.stringify(msg)), function(sendInfo){
-		console.log("sent: " + sendInfo);
+		console.log("sent: ");
+		console.log(msg);
 	});
 }
 
