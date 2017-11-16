@@ -25,8 +25,16 @@ chrome.sockets.tcp.onReceive.addListener(function(info){
 			var randomNumber =msgObject.randomNumber; //Pairing에 쓰일 무작위 4자리숫자
 			var _nvhttpHost = new NvHTTP(msgObject.hostIp, myUniqueid, msgObject.hostIp); //새로운 host의 정보를 담을 NvHTTP객체 생성
 			pairTo(_nvhttpHost, function() {		//Pairing 작업을 수행할 PairTo함수를 호출, 두번째 인자는 pairing성공 시 호출할 콜백, 세번째 인자는 실패 시 호출
-                beginBackgroundPollingOfHost(_nvhttpHost);
-                addHostToGrid(_nvhttpHost);
+				// Check if we already have record of this host
+            	if (hosts[_nvhttpHost.serverUid] != null) {
+                // Just update the addresses
+                	hosts[_nvhttpHost.serverUid].address = _nvhttpHost.address;
+                	hosts[_nvhttpHost.serverUid].userEnteredAddress = _nvhttpHost.userEnteredAddress;
+            	}
+            	else{	
+                	beginBackgroundPollingOfHost(_nvhttpHost);
+                	addHostToGrid(_nvhttpHost);
+            	}
                 saveHosts();
                 sendMsg({
                 	command: "addHostResult_TO_WEB",
