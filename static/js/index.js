@@ -721,13 +721,14 @@ function startGame(host, appID, option) {
             // we told the user it was in Mbps. We're dirty liars and use Kbps behind their back.
             // CONNETO: add option argument to automatic setting of resolution, framerate
             //var frameRate, streamWidth, streamHeight, bitrate, remote_audio_enabled;
-
+            var streamWidth, streamHeight, bitrate, remote_audio_enabled, frameRate;
             if (option) {
 
                 streamWidth = option.streamWidth;
                 streamHeight = option.streamHeight;
                 bitrate = parseInt(option.bitRate) * 1000;
                 remote_audio_enabled = option.remote_audio_enabled;
+                frameRate = option.frameRate; 
                 startOption = option;
             }
             // CONNETO: add option argument to automatic setting of resolution, framerate
@@ -864,8 +865,9 @@ function stopGame(host, callbackFunction) {
             snackbarLog('Stopping ' + appName);
             host.quitApp().then(function(ret2) {
                 host.refreshServerInfo().then(function(ret3) { // refresh to show no app is currently running.
-                    showAppsMode();
-                    stylizeBoxArt(host, runningApp.id);
+                    //showAppsMode();
+                    //stylizeBoxArt(host, runningApp.id);
+                    console.log("Game has been quited");
                     if (typeof(callbackFunction) === "function") callbackFunction();
                 }, function(failedRefreshInfo2) {
                     console.log('ERROR: failed to refresh server info!');
