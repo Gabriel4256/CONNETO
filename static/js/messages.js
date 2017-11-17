@@ -23,14 +23,18 @@ function handleMessage(msg) {
         if(msg.data === 'streamTerminated') {  // if it's a recognized event, notify the appropriate function
             $('#loadingSpinner').css('display', 'none'); // This is a fallback for RTSP handshake failing, which immediately terminates the stream.            
             $('body').css('backgroundColor', '#282C38');
-
+            showHostsAndSettingsMode();
+            console.log("game has been terminated");
             api.refreshServerInfo().then(function (ret) {  // refresh the serverinfo to acknowledge the currently running app
                 api.getAppList().then(function (appList) {
                     appList.forEach(function (app) {
                         stylizeBoxArt(api, app.id);  // and reapply stylization to indicate what's currently running
                     });
                 });
-                showApps(api);
+                //CONNETO: return to start menu when game has been terminated
+                //showApps(api);
+                showHostsAndSettingsMode();
+                //CONNETO: return to start menu when game has been terminated
 
                 isInGame = false;
 
