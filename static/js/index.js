@@ -436,10 +436,18 @@ function showLoginModal() {
     $('#continueLogin').off('click');
     $('#continueLogin').on('click', function() {
         // DataTransmission via TCP Socket
-        sendMsg({
-            "command": "isAccount",
-            "userID": $('#userId').val(),
-            "userPW": $('#userPassword').val()
+        sendMsgtoCentralServer({
+            header: {
+                type: 'Request',
+                token: '',
+                command: 'login',
+                source: 'CONNETO',
+                dest: 'DB'
+            },
+            body: {
+                userId: $('#userId').val(),
+                userPW: $('#userPassword').val()
+            }
         });
         // modal.close();
     });
@@ -677,7 +685,7 @@ function startGame(host, appID, option) {
     }
 
     // refresh the server info, because the user might have quit the game.
-    host.refreshServerInfo().then(function(ret) {
+    return host.refreshServerInfo().then(function(ret) {    //CONNETO: return added
         host.getAppById(appID).then(function(appToStart) {
 
             if (host.currentGame != 0 && host.currentGame != appID) {
@@ -749,11 +757,12 @@ function startGame(host, appID, option) {
                 }, function(failedResumeApp) {
                     console.log('ERROR: failed to resume the app!');
                     console.log('Returned error was: ' + failedResumeApp);
+                    throw new Error("failed to resume app, returned error was " + failedResumeApp);
                     return;
                 });
             }
 
-            host.launchApp(appID,
+            return host.launchApp(appID,        //CONNETO: return added
                 streamWidth + "x" + streamHeight + "x" + frameRate,
                 1, // Allow GFE to optimize game settings
                 rikey, rikeyid,
@@ -766,9 +775,9 @@ function startGame(host, appID, option) {
             }, function(failedLaunchApp) {
                 console.log('ERROR: failed to launch app with appID: ' + appID);
                 console.log('Returned error was: ' + failedLaunchApp);
+                throw new Error("failed to luanch app, returned error was " + failedLaunchApp)
                 return;
             });
-
         });
     });
 }
@@ -855,7 +864,7 @@ function stopGame(host, callbackFunction) {
         return;
     }
 
-    host.refreshServerInfo().then(function(ret) {
+    return host.refreshServerInfo().then(function(ret) { //CONNETO: add return
         host.getAppById(host.currentGame).then(function(runningApp) {
             if (!runningApp) {
                 snackbarLog('Nothing was running');
@@ -868,23 +877,28 @@ function stopGame(host, callbackFunction) {
                     //showAppsMode();
                     //stylizeBoxArt(host, runningApp.id);
                     console.log("Game has been quited");
-                    if (typeof(callbackFunction) === "function") callbackFunction();
+                    return;
+                    //if (typeof(callbackFunction) === "function") callbackFunction();
                 }, function(failedRefreshInfo2) {
                     console.log('ERROR: failed to refresh server info!');
                     console.log('Returned error was: ' + failedRefreshInfo2);
                     console.log('failed server was: ' + host.toString());
+                    throw new Error('failedRefreshInfo2')
                 });
             }, function(failedQuitApp) {
                 console.log('ERROR: failed to quit app!');
                 console.log('Returned error was: ' + failedQuitApp);
+                throw new Error('failedQuitApp')
             });
         }, function(failedGetApp) {
             console.log('ERROR: failed to get app ID!');
             console.log('Returned error was: ' + failedRefreshInfo);
+            throw new Error("failedGetApp");
         });
     }, function(failedRefreshInfo) {
         console.log('ERROR: failed to refresh server info!');
         console.log('Returned error was: ' + failedRefreshInfo);
+        throw new Error("faileRefreshInfo")
     });
 }
 

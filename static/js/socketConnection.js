@@ -1,118 +1,155 @@
 // All implementations are made for CONNETO
 
 var socketInfo;
-//window.setTimeout(Test, 1000);
-chrome.sockets.tcp.onReceive.addListener(function(info){
+	
+function DataHandler(info){
 	//tcp Listener 등록
-	var msg = arrayBufferToString(info.data);
-	console.log("Received: " + msg);
-	var msgObject = JSON.parse(msg); //msg로부터 JSON 객체를 얻어낸다(Parsing).
-	console.log(msgObject.command);
-	switch(msgObject.command){	//msgOBject의 command값에 따라 다른 작업을 수행
+	var receivedMsg = arrayBufferToString(info.data);
+	console.log("Received: " + receivedMsg);
+	var msgObject = JSON.parse(receivedMsg); //msg로부터 JSON 객체를 얻어낸다(Parsing).
+	//console.log(msgObject.header.command);
+	var msg = {
+		header: {
+			type: 'Response',
+			token:'',
+			command: msgObject.header.command,
+			source: 'CONNETO',
+			dest: 'WEB'
+		},
+		body: {
+			userId: msgObject.body.userId
+		}
+	}	
+	switch(msgObject.header.command){	//msgOBject의 command값에 따라 다른 작업을 수행
+
 		case "getHosts": //연결된 호스트들의 정보를 보내달라는 요청일 경우
-			var msg = [];
+			var hostList = [];
 			for (var hostId in hosts){	//hosts는 모든 host들의 정보를 담고 있는 사전에 정의된 변수
-				msg.push({"hostId": hostId,		//host의 id(고유한 값)
+				hostList.push({
+					"hostId": hostId,		//host의 id(고유한 값)
 					"hostname": hosts[hostId].hostname,	//host의 이름
 					"online": hosts[hostId].online,		//host가 현재 online인지
 					"paired": hosts[hostId].paired		//host와 현재 pairing된 상태인지
 				});
 			}
-			sendMsg({command: "getHostsResult_TO_WEB", userID: msgObject.userID, list: msg});
+			msg.body.list = hostList;
+			sendMsgtoCentralServer(msg);
 			break;
 
-		case "addHost":  //새로운 호스트를 연결해달라는 요청일 경우
-			var randomNumber =msgObject.randomNumber; //Pairing에 쓰일 무작위 4자리숫자
-			var _nvhttpHost = new NvHTTP(msgObject.hostIp, myUniqueid, msgObject.hostIp); //새로운 host의 정보를 담을 NvHTTP객체 생성
-			pairTo(_nvhttpHost, function() {		//Pairing 작업을 수행할 PairTo함수를 호출, 두번째 인자는 pairing성공 시 호출할 콜백, 세번째 인자는 실패 시 호출
-				// Check if we already have record of this host
-            	if (hosts[_nvhttpHost.serverUid] != null) {
-                // Just update the addresses
-                	hosts[_nvhttpHost.serverUid].address = _nvhttpHost.address;
-                	hosts[_nvhttpHost.serverUid].userEnteredAddress = _nvhttpHost.userEnteredAddress;
-            	}
-            	else{	
-                	beginBackgroundPollingOfHost(_nvhttpHost);
-                	addHostToGrid(_nvhttpHost);
-            	}
-                saveHosts();
-                sendMsg({
-                	command: "addHostResult_TO_WEB",
-                	userID: msgObject.userID,
-                	hostId: _nvhttpHost.hostId,
-                	hostname: _nvhttpHost.hostname,
-                	online: _nvhttpHost.online,
-              		paired: _nvhttpHost.paired
-                });
-            }, function() {
-            	sendMsg({command: "addHostResult_TO_WEB", userID: msgObject.userID, error: 3});
-                snackbarLog('pairing to ' + msgObject.hostIp + ' failed!');
-        	}, randomNumber);
-			break;
+		case "addHost":  //새로운 호스트를 연결해달라는 요청일 경우		
+		var pairingNumber =msgObject.data.pairingNum; //Pairing에 쓰일 무작위 4자리숫자
+		var _nvhttpHost = new NvHTTP(msgObject.body.hostIpaddress, myUniqueid, msgObject.body.hostIpaddress); //새로운 host의 정보를 담을 NvHTTP객체 생성
+		pairTo(_nvhttpHost, function() {		//Pairing 작업을 수행할 PairTo함수를 호출, 두번째 인자는 pairing성공 시 호출할 콜백, 세번째 인자는 실패 시 호출
+			// Check if we already have record of this host
+			if (hosts[_nvhttpHost.serverUid] != null) {
+				// Just update the addresses
+				hosts[_nvhttpHost.serverUid].address = _nvhttpHost.address;
+				hosts[_nvhttpHost.serverUid].userEnteredAddress = _nvhttpHost.userEnteredAddress;
+			}
+			else{	
+				beginBackgroundPollingOfHost(_nvhttpHost);
+				addHostToGrid(_nvhttpHost);
+			}
+			saveHosts();
+			msg.body.hostId = _nvhttpHost.hostId;
+			msg.body.hostname = _nvhttpHost.hostname;
+			msg.body.online = _nvhttpHost.online;
+			msg.body.paired = _nvhttpHost.paired;
+			msg.header.statusCode =200;
+			sendMsgtoCentralServer(msg);
+		}, function() {
+			msg.body.error = 1;
+			msg.header.statusCode = 400;
+            sendMsgtoCentralServer(msg);
+			snackbarLog('pairing to ' + msgObject.hostIp + ' failed!');
+        }, pairingNumber);
+		break;
 
 		case "getApps":  //특정 호스트의 플레이 가능 게임 리스트를 보내달라는 요청
 			var host = hosts[msgObject.hostId];
 			if(!host.online){
-				sendMsg({"error": 1});
+				msg.header.statusCode = 400;
+				msg.body.error = 1;
+				sendMsgtoCentralServer(msg);
 				break;
 			}
 
 			if(!host.paired){
-				sendMsg({"error": 2});
+				msg.header.statusCode = 400;
+				msg.body.error = 2;
+				sendMsgtoCentralServer(msg);
 				break;
 			}
 
 			host.getAppList().then(function(appList){	//getAppList는 host객체에 사전에 정의된 함수로 그 호스트의 실행가능한 게임들을 반환
-				sendMsg({
-					command: "getAppsResult_TO_WEB",
-					userID: msgObject.userID,
-					appList
-				});
-			});
+				msg.body.appList = appList;
+				msg.header.statusCode = 200;
+				sendMsgtoCentralServer(msg);
+			})
+			.catch(function(error){
+				msg.header.statusCode = 400;
+				msg.body.error = 3;
+				sendMsgtoCentralServer(msg);
+			})
 			break;
 
 		case "startGame":  //특정 호스트의 특정 게임을 실행해달라는 요청
 			var host = hosts[msgObject.hostId];
+			msg.body.hostId = msgObject.hostId;
+			msg.body.appId = msgObject.appId;
 			host.pollServer(function(){
 				if(!host.online){
-					sendMsg({"error": 1});
+					msg.body.error = 1;
+					msg.header.statusCode  = 400;
+					sendMsgtoCentralServer(msg);
 					return;
 				}
 
 				if(!host.paired){
-					sendMsg({"error": 2});
+					msg.body.error = 2;
+					msg.header.statusCode = 400;					
+					sendMsgtoCentralServer(msg);
 					return;
 				}
-				startGame(hosts[msgObject.hostId], msgObject.appId, startOption);
-				sendMsg({
-					command: "startGameResult_TO_WEB",
-					userID: msgObject.userID,
-					hostId: msgObject.hostId, 
-					appId: msgObject.appId
+				startGame(hosts[msgObject.hostId], msgObject.appId, msgObject.option)
+				.then(()=>{
+					msg.header.statusCode = 200;
+					sendMsgtoCentralServer(msg);					
+				})
+				.catch((err)=>{
+					msg.header.statusCode = 400;					
+					msg.body.error = 3
+					sendMsgtoCentralServer(msg)
 				});
 			})
 			break;
 
-		case "loginApproval":
-			var isApproved = msgObject.isApproved;
-			var userID = msgObject.userID;
+		case "stopGame":
+			var host = hosts[msgObject.hostId];
+			stopGame(host)
+			.then(()=>{
+				msg.header.statusCode = 200;
+				msg.body.hostId = msgObject.hostId;
+				msg.body.appId = msgObject.appId;
+			})
+			.catch((err)=>{
+				msg.header.statusCode = 400;
+				msg.body.hostId = msgObject.hostId;
+				msg.body.appId = msgObject.appId;
+				msg.body.error = err;
+			}).then(()=>{
+				sendMsgtoCentralServer(msg);
+			})
+			break;
+
+		case "login":
+			var userId = msgObject.body.userId;
 			var modal = document.querySelector('#loginDialog');
 
-			if(isApproved){
-				accID = userID;
+			if(msgObject.header.statusCode === 200){
+				console.log("Login Success");
+				accID = userId;
 				modal.close();
-
-				startOption.frameRate = "60";
-				startOption.streamWidth = "1920";
-				startOption.streamHeight = "1080";
-				startOption.bitRate = "20";
-				startOption.remote_audio_enabled = 1;
-
-				/*
-				$("#secondView").fadeOut("slow", function (){
-		            $("#thirdView").fadeIn("slow");
-		        });
-				*/
 			}
 			else{
 				// ChromeApplication에서는 alert 작동하지 않음
@@ -147,7 +184,7 @@ chrome.sockets.tcp.onReceive.addListener(function(info){
 		default:
 			break;
 	}
-});
+};
 
 chrome.sockets.tcp.create({}, function(createInfo){
 	console.log("Created socket's socketId: " + createInfo.socketId);
@@ -158,6 +195,8 @@ chrome.sockets.tcp.create({}, function(createInfo){
 	chrome.sockets.tcp.onReceiveError.addListener(function(info){
 		console.log("Something broken in connection with Central server: " + info.resultCode);
 	});
+
+	chrome.sockets.tcp.onReceive.addListener(DataHandler);
 
 	setInterval(function(){
 		chrome.sockets.tcp.getInfo(createInfo.socketId, function(socketInfo){
@@ -176,7 +215,7 @@ function connectToCentralserver(createInfo, ip, port){
 	});		
 }
 
-function sendMsg(msg){	//tcp소켓을 통해 메세지를 보낼 때 사용하는 함수(귀찮은 변환 과정을 함수로 만듬)
+function sendMsgtoCentralServer(msg){	//tcp소켓을 통해 메세지를 보낼 때 사용하는 함수(귀찮은 변환 과정을 함수로 만듬)
 	chrome.sockets.tcp.send(socketInfo.socketId, stringToArrayBuffer(JSON.stringify(msg)), function(sendInfo){
 		console.log("sent: ");
 		console.log(msg);
