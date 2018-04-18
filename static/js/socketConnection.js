@@ -29,15 +29,16 @@ function DataHandler(info){
 					"hostId": hostId,		//host의 id(고유한 값)
 					"hostname": hosts[hostId].hostname,	//host의 이름
 					"online": hosts[hostId].online,		//host가 현재 online인지
-					"paired": hosts[hostId].paired		//host와 현재 pairing된 상태인지
+					"paired": hosts[hostId].paired,		//host와 현재 pairing된 상태인지
+					"hostIpaddress": hosts[hostId].hostIpaddress
 				});
 			}
-			msg.body.list = hostList;
+			msg.body.hostList = hostList;
 			sendMsgtoCentralServer(msg);
 			break;
 
 		case "addHost":  //새로운 호스트를 연결해달라는 요청일 경우		
-		var pairingNumber =msgObject.data.pairingNum; //Pairing에 쓰일 무작위 4자리숫자
+		var pairingNumber =msgObject.body.pairingNum; //Pairing에 쓰일 무작위 4자리숫자
 		var _nvhttpHost = new NvHTTP(msgObject.body.hostIpaddress, myUniqueid, msgObject.body.hostIpaddress); //새로운 host의 정보를 담을 NvHTTP객체 생성
 		pairTo(_nvhttpHost, function() {		//Pairing 작업을 수행할 PairTo함수를 호출, 두번째 인자는 pairing성공 시 호출할 콜백, 세번째 인자는 실패 시 호출
 			// Check if we already have record of this host
@@ -55,18 +56,19 @@ function DataHandler(info){
 			msg.body.hostname = _nvhttpHost.hostname;
 			msg.body.online = _nvhttpHost.online;
 			msg.body.paired = _nvhttpHost.paired;
+			msg.body.hostIpaddress = msgObject.body.hostIpaddress;
 			msg.header.statusCode =200;
 			sendMsgtoCentralServer(msg);
 		}, function() {
 			msg.body.error = 1;
 			msg.header.statusCode = 400;
             sendMsgtoCentralServer(msg);
-			snackbarLog('pairing to ' + msgObject.hostIp + ' failed!');
+			snackbarLog('pairing to ' + msgObject.body.hostIp + ' failed!');
         }, pairingNumber);
 		break;
 
 		case "getApps":  //특정 호스트의 플레이 가능 게임 리스트를 보내달라는 요청
-			var host = hosts[msgObject.hostId];
+			var host = hosts[msgObject.body.hostId];
 			if(!host.online){
 				msg.header.statusCode = 400;
 				msg.body.error = 1;
@@ -94,9 +96,9 @@ function DataHandler(info){
 			break;
 
 		case "startGame":  //특정 호스트의 특정 게임을 실행해달라는 요청
-			var host = hosts[msgObject.hostId];
-			msg.body.hostId = msgObject.hostId;
-			msg.body.appId = msgObject.appId;
+			var host = hosts[msgObject.body.hostId];
+			msg.body.hostId = msgObject.body.hostId;
+			msg.body.appId = msgObject.body.appId;
 			host.pollServer(function(){
 				if(!host.online){
 					msg.body.error = 1;
@@ -125,17 +127,13 @@ function DataHandler(info){
 			break;
 
 		case "stopGame":
-			var host = hosts[msgObject.hostId];
+			var host = hosts[msgObject.body.hostId];
 			stopGame(host)
 			.then(()=>{
 				msg.header.statusCode = 200;
-				msg.body.hostId = msgObject.hostId;
-				msg.body.appId = msgObject.appId;
 			})
 			.catch((err)=>{
 				msg.header.statusCode = 400;
-				msg.body.hostId = msgObject.hostId;
-				msg.body.appId = msgObject.appId;
 				msg.body.error = err;
 			}).then(()=>{
 				sendMsgtoCentralServer(msg);
