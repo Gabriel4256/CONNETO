@@ -1,10 +1,8 @@
-# Moonlight for Chrome
+# CONNETO
 
-[Moonlight for Chrome](http://moonlight-stream.com) is an open source implementation of NVIDIA's GameStream, as used by the NVIDIA Shield, but built to run in the Chrome browser.
-
-Moonlight for Chrome allows you to stream your full collection of games from your powerful desktop to another PC or laptop running Windows, Mac OS X, Linux, or Chrome OS.
-
-Moonlight also has mobile versions for [Android](https://github.com/moonlight-stream/moonlight-android) and  [iOS](https://github.com/moonlight-stream/moonlight-ios).
+CONNETO는 NVIDIA의 Gamstream Protocol을 구현한 [Moonlight for Chrome](http://moonlight-stream.com)에 기반한 Chrome app입니다.
+CONNETO는 powerful desktop에서 실행할 수 있는 고사양의 게임들을 laptop에서 원격으로 매우 낮은 딜레이로 즐길 수 있게 해줍니다.
+사용을 위해서는 [WEB interface](https://github.com/twice154/react_server)가 필요합니다.
 
 ## Features
 
@@ -14,25 +12,25 @@ Moonlight also has mobile versions for [Android](https://github.com/moonlight-st
 * Full support for Xbox controllers and PlayStation controllers, and some other HID gamepads
 * Use mDNS to scan for compatible GeForce Experience (GFE) machines on the network
 
-## Features to come
-* Gamepad mapping
-* Improved UI
-* Better error handling
-
 ## Installation
+Server:
 * Download [GeForce Experience](http://www.geforce.com/geforce-experience) and install on your GameStream-compatible PC
-* Install the [latest release](https://github.com/moonlight-stream/moonlight-chrome/releases)
 
-## Requirements
-* Chrome browser on Windows, Mac OS X, Linux, or Chrome OS
-* [GameStream-compatible](http://shield.nvidia.com/play-pc-games/) computer with GTX 600+ series desktop or mobile GPU (for the PC from which you're streaming)
-* High-end wireless router (802.11n dual-band recommended) or wired network
-
-## Building
+Client:
 1. Install the Chrome Native Client SDK and download the current Pepper SDK
 2. Set the `NACL_SDK_ROOT` environment variable to your Pepper SDK folder. If you need more detailed instructions, see [here](https://github.com/google/pepper.js/wiki/Getting-Started)
 3. Run `git submodule update --init --recursive` from within `moonlight-chrome/`
 4. Run `make` from within the `moonlight-chrome/` repo
+
+## Requirements
+Server: 
+* [GameStream-compatible](http://shield.nvidia.com/play-pc-games/) computer with GTX 600+ series desktop or mobile GPU (for the PC from which you're streaming)
+
+Client: 
+- Chrome browser on Windows, Mac OS X, Linux, or Chrome OS
+
+Both Sides: 
+* High-end wireless router (802.11n dual-band recommended) or wired network
 
 ## Testing
 1. Open the Extensions page in Chrome
@@ -41,30 +39,3 @@ Moonlight also has mobile versions for [Android](https://github.com/moonlight-st
 4. Run Moonlight from the extensions page
 5. If making changes, make sure to click the Reload button on the Extensions page
 
-## Streaming
-Simply type the hostname or IP into the textbox, pair, choose an app to run, then begin streaming.  Once paired, the host will be remembered in a dropdown menu.  To exit a stream, press Ctrl+Alt+Shift+Q. To remove focus from the stream, press Ctrl+Alt+Shift.
-
-## Contribute
-
-This project is being actively developed at [XDA Developers](http://forum.xda-developers.com/showthread.php?t=2505510)
-
-1. Fork us
-2. Write code
-3. Send Pull Requests
-
-Check out our [website](http://moonlight-stream.com) for project links and information.
-
-## Modified things for implementation of CONNETO (can find by CONNETO tag)
-- ./manifest.json: Chrome Extension동작 방법들의 정의가 들어있는 파일
-- ./index.html -> ./indexNew.html로 대체해야함
-- ./css/style.css -> ./css/styleNew.css로 대체해야함
-- ./js/mdns-browser/main.js
-- ./js/background.js
-- ./js/index.js
-- ./js/messages.js
-- ./js/socketConnection.js
-
-## Things to implement
-- Automatic connection between client & host
-- Making queue for waiting client
-- Reduce delay of connection
